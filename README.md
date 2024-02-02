@@ -2,8 +2,8 @@
 
 ### Required Dependencies
 
-python 3.9+
-postgresql 16+
+- python 3.9+
+- postgresql 16+
 
 ### Local dev setup
 
@@ -31,7 +31,8 @@ Install requirements
 pip install -r requirements.txt
 ```
 
-Copy and edit environment variables
+#### Copy and edit environment variables - _important_
+
 Create the database on your local postgres DB using credentials you edited in the .env file
 
 If you already have postgres installed and running, you would only have to create a new database
@@ -71,13 +72,7 @@ Waiting for database...
 ...
 ```
 
-You can use
-
-```bash
-ctrl C
-```
-
-to end the process and view the error logs.
+You can use `ctrl C` to end the process and view the error logs.
 
 Apply database migrations
 
@@ -100,5 +95,7 @@ python manage.py runserver
 visit the swagger documentation ui at http://127.0.0.1:8000/api/docs
 
 Quickly reach out if any issue(s) is encountered, Thank you.
+
 Call/whatsapp - 08164404546
+
 email - martinsndifon@gmail.com

@@ -15,6 +15,7 @@ from article.serializers import ArticleSerializer
 
 ARTICLE_URL = reverse("article:article-list")
 PRICE_FILTER_URL = reverse("article:price-filter-list")
+PROVIDER_FILTER_URL = reverse("article:provider-filter-list")
 
 
 def detail_url(article_id):
@@ -218,3 +219,23 @@ class ArticleApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(len(res.data), 2)
+
+    def test_filtering_by_provider(self):
+        """Test filtering articles by provider"""
+        provider2 = Provider.objects.create(provider_name="Provider2")
+        create_many_articles(self.provider, 5)
+        create_many_articles(provider2, 5)
+
+        res = self.client.get(PROVIDER_FILTER_URL, {"pid": provider2.provider_no})
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(res.data), 5)
+
+    def test_filtering_by_invalid_provider(self):
+        """Test filtering articles by invalid provider"""
+        create_many_articles(self.provider, 5)
+
+        res = self.client.get(PROVIDER_FILTER_URL, {"pid": 9999})
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(res.data), 0)

@@ -9,6 +9,7 @@ from article import views
 router = DefaultRouter()
 router.register("", views.ArticleViewSet)
 router.register("articles/filter", views.PriceFilterViewSet, basename="price-filter")
+router.register("articles/provider", views.ProviderFilterViewSet, basename="provider-filter")
 
 app_name = "article"
 

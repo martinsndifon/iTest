@@ -64,3 +64,35 @@ class PriceFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             queryset = queryset.filter(price__lte=max_price)
 
         return queryset.order_by("-article_no").distinct()
+
+
+@extend_schema(
+    tags=["article"],
+    parameters=[
+        OpenApiParameter(
+            "pid",
+            OpenApiTypes.INT,
+            description="id of the provider.",
+        ),
+    ],
+)
+class ProviderFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """View for managing provider filter of article API."""
+
+    serializer_class = serializers.ArticleSerializer
+    queryset = Article.objects.all()
+
+    def get_queryset(self):
+        """Return the properties by a given provider."""
+        queryset = self.queryset
+        p_id = self.request.query_params.get("pid")
+
+        try:
+            p_id = int(p_id) if p_id else None
+        except ValueError:
+            p_id = None
+
+        if p_id:
+            queryset = queryset.filter(provider_no=p_id)
+
+        return queryset.order_by("-article_no").distinct()
