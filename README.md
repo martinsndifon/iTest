@@ -92,7 +92,9 @@ Start server
 python manage.py runserver
 ```
 
-visit the swagger documentation ui at http://127.0.0.1:8000/api/docs
+visit the swagger documentation ui at http://127.0.0.1:8000/api/docs to interact with the api or
+
+interact with the api/documentation using this postman link https://elements.getpostman.com/redirect?entityId=29028911-e2a7ad45-1795-432a-ae2f-c51fbbf4cd1e&entityType=collection
 
 Quickly reach out if any issue(s) is encountered, Thank you.
 
