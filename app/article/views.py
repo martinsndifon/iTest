@@ -42,7 +42,7 @@ class PriceFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Article.objects.all()
 
     def get_queryset(self):
-        """Return the properties that match the filter price."""
+        """Return the articles that match the filter price."""
         queryset = self.queryset
         min_price = self.request.query_params.get("min")
         max_price = self.request.query_params.get("max")
@@ -72,18 +72,18 @@ class PriceFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         OpenApiParameter(
             "pid",
             OpenApiTypes.INT,
-            description="id of the provider.",
+            description="id of the article.",
         ),
     ],
 )
 class ProviderFilterViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    """View for managing provider filter of article API."""
+    """View for managing article filter of article API."""
 
     serializer_class = serializers.ArticleSerializer
     queryset = Article.objects.all()
 
     def get_queryset(self):
-        """Return the properties by a given provider."""
+        """Return the articles by a given provider."""
         queryset = self.queryset
         p_id = self.request.query_params.get("pid")
 
